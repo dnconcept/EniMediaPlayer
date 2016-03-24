@@ -1,0 +1,59 @@
+eni_media_genre:
+    resource: "@EniMediaBundle/Resources/config/routing/genre.yml"
+    prefix:   /genre
+    
+eni_media_typemedia:
+    resource: "@EniMediaBundle/Resources/config/routing/typemedia.yml"
+    prefix:   /typemedia
+    
+eni_media_personne:
+    resource: "@EniMediaBundle/Controller/PersonneController.php"
+    type:     annotation
+    
+media_list:
+    path:     /
+    defaults: { _controller: EniMediaBundle:Media:list }
+
+a:
+    path: /test
+    defaults: { _controller: EniMediaBundle:Media:testHtml }
+
+
+media_list_ajax:
+    path:     /media/list-ajax.{format}
+    defaults: { _controller: EniMediaBundle:Media:listAjax, format:"json" }
+    requirements:
+        format: (json|xml)
+    
+media_edit:
+    path:     /media/edit/{id}
+    defaults: { _controller: EniMediaBundle:Media:edit }
+    requirements:
+        id: \d+
+        
+media_add:
+    path:     /media/add
+    defaults: { _controller: EniMediaBundle:Media:add }
+
+media_delete:
+    path:     /media/delete/{id}
+    defaults: { _controller: EniMediaBundle:Media:delete }
+    methods: POST|DELETE
+    requirements:
+        id: \d+    
+
+debug:
+    path:     /debug
+    defaults: { _controller: EniMediaBundle:Debug:index }
+
+ville_liste:
+    path:     /ville/liste
+    defaults: { _controller: EniMediaBundle:Ville:liste }
+
+ville_fiche:
+    path:     /ville/edit/{id}
+    defaults: { _controller: EniMediaBundle:Ville:edit, id: null }
+
+check_translator:
+    path:     /check/translator
+    defaults: { _controller: EniMediaBundle:CheckTranslator:checkTranslator }

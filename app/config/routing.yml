@@ -1,0 +1,4 @@
+eni_media:
+    resource: "@EniMediaBundle/Resources/config/routing.yml"
+    prefix:   /
+

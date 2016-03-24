@@ -1,0 +1,29 @@
+genre_index:
+    path:     /
+    defaults: { _controller: "EniMediaBundle:Genre:index" }
+    methods:  GET
+
+genre_list_ajax:
+    path:     /list-ajax.{format}
+    defaults: { _controller: "EniMediaBundle:Genre:listAjax", format:"json" }
+    methods:  GET
+
+genre_show:
+    path:     /{id}/show
+    defaults: { _controller: "EniMediaBundle:Genre:show" }
+    methods:  GET
+
+genre_new:
+    path:     /new
+    defaults: { _controller: "EniMediaBundle:Genre:new" }
+    methods:  [GET, POST]
+
+genre_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "EniMediaBundle:Genre:edit" }
+    methods:  [GET, POST]
+
+genre_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "EniMediaBundle:Genre:delete" }
+    methods:  DELETE

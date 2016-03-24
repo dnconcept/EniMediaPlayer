@@ -1,0 +1,63 @@
+<div class="row hidden-print">
+    <div class="col-md-3 col-xs-12 text-center">
+        <div class="btn-group btn-group-player">
+            <button class="btn btn-default" ng-click="prev()">
+                <i class="fa fa-fast-backward"></i>
+            </button>
+            <button class="btn btn-default" ng-click="pause()">
+                <play-pause-button is-active='activeMedia'></play-pause-button>
+            </button>
+            <button class="btn btn-default" ng-click="next()">
+                <i class="fa fa-fast-forward"></i>
+            </button>
+        </div>
+        <br>
+        <br>
+        <div class="btn-group">
+            <button class="btn btn-default" ng-click='decrease()'>
+                <i class="fa fa-volume-down"></i>
+            </button>
+            <button class="btn btn-default">
+                {{p.volume * 100 | number:0}} %
+                <input type="range" min="0" max="1" ng-model='p.volume' ng-change='applyVolume()' step=".01">
+            </button>
+            <button id="maxVolume" class="btn btn-default" ng-click='increase()'>
+                <i class="fa fa-volume-up"></i>
+            </button>
+        </div>
+    </div>
+    <div class="col-md-5 col-sm-6 col-xs-12" style="min-height: 120px">
+        <div ng-show='activeMedia'>
+            <p class="control-label name" id="name"><b>{{ activeMedia.createur.nom}} </b></p>
+            <p class="control-label title" id="title"><b>{{ activeMedia.name}}</b></p>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <input type="range" min="0" max="100" ng-model="avancement">
+                <audio id="mediaPlayer"></audio>
+            </div>
+            <p class="control-label "><span>{{ p.timeNow | myTime }}</span> / <span>{{ p.timeTot | myTime }}</span></p>
+        </div>
+        <div ng-hide='activeMedia'>
+            <p class="text-center">Aucune chanson en cours de lecture</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+            <input type="text" class="form-control" placeholder="Rechercher un media" ng-model="f.search">
+        </div>
+        <br>
+        <div>
+            <button class="btn btn-default" ng-click="random()">
+                <i class="fa fa-random"></i>
+            </button>
+            <span class="switch pull-right">
+                <label>
+                    Off
+                    <input type="checkbox" id="random">
+                    <span class="lever"></span>
+                    On
+                </label>
+            </span>
+        </div>
+    </div>
+</div>

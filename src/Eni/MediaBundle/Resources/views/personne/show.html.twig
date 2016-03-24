@@ -1,0 +1,44 @@
+{% extends "EniMediaBundle::layout.html.twig" %}
+{% import "EniMediaBundle:macros:buttons.html.twig" as buttons %}
+{% block body %}
+    <h1>Détail du membre
+        <small>{{ personne.fullName }}</small>
+    </h1>
+    <table class="table table-bordered table-striped">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ personne.id }}</td>
+        </tr>
+        <tr>
+            <th>Prenom</th>
+            <td>{{ personne.prenom }}</td>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <td>{{ personne.nom }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ personne.email }}</td>
+        </tr>
+        <tr>
+            <th>Password</th>
+            <td>{{ personne.password }}</td>
+        </tr>
+        <tr>
+            <th>Latitude</th>
+            <td>{{ personne.latitude }}</td>
+        </tr>
+        <tr>
+            <th>Longitude</th>
+            <td>{{ personne.longitude }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class='btn btn-group'>
+        {{ buttons.backToList("personne", "Retour à la liste des utilisateurs") }}
+        {{ buttons.editButton("personne", personne.id) }}
+    </div>
+    {{ buttons.deleteForm(delete_form) }}
+{% endblock %}

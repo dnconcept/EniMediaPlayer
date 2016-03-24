@@ -1,0 +1,20 @@
+{% macro edit(route, id) %}
+    <div class="btn-group btn-group-sm">
+        <a class="btn btn-default" href="{{ path([route , '_show']|join, { 'id': id }) }}"><i class="fa fa-info"></i> Détail</a>
+        <a class="btn btn-primary" href="{{ path([route , '_edit']|join, { 'id': id }) }}"><i class="fa fa-edit"></i> Editer</a>
+    </div>
+{% endmacro %}
+
+{% macro backToList(route, title) %}
+    <a class="btn btn-default" href="{{ path([route, '_index']|join) }}"><i class="fa fa-backward"></i> {{ title }}</a>
+{% endmacro %}
+
+{% macro editButton(route, id) %}
+    <a class="btn btn-primary" href="{{ path([route, '_edit']|join, { 'id': id }) }}">Editer</a>
+{% endmacro %}
+
+{% macro deleteForm(form) %}
+    {{ form_start(form) }}
+    <button type="submit" class="btn btn-danger">Supprimer</button>
+    {{ form_end(form) }}
+{% endmacro %}

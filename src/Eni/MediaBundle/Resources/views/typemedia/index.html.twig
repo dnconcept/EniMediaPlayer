@@ -1,0 +1,32 @@
+{% extends "EniMediaBundle::layout.html.twig" %}
+{% import "EniMediaBundle:macros:buttons.html.twig" as buttons %}
+{% block body %}
+    <h1>TypeMedia [{{ typeMedia | length }}]</h1>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for typeMedia in typeMedia %}
+            <tr>
+                <td><a href="{{ path('typemedia_show', { 'id': typeMedia.id }) }}">{{ typeMedia.id }}</a></td>
+                <td>{{ typeMedia.name }}</td>
+                <td>
+                    {{ buttons.edit('typemedia', typeMedia.id) }}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul class="list-unstyled">
+        <li>
+            <a class="btn btn-primary" href="{{ path('typemedia_new') }}"><i class="fa fa-plus"></i> Créer un nouveau type de media</a>
+        </li>
+    </ul>
+{% endblock %}

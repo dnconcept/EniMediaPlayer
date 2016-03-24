@@ -1,0 +1,57 @@
+{% extends "EniMediaBundle::layout.html.twig" %}
+{% block body %}
+    <div class="z-depth-3 main col-xs-12">
+        {% include "EniMediaBundle:Media:player.html.twig" %}
+        <div class="row">
+            <div class="col-sm-3 hidden-print">
+                <div class="list-group">
+                    {% for t in type_media %}
+                        <a href="#" class="list-group-item">{{ t.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="row">
+                    {% for m in media %}
+                        <div class="col-md-6 media-music"
+                             data-music-path='{{ m.mediaPath }}'
+                             data-title="{{ m.name }}"
+                             data-name="{{ m.createur ? m.createur.fullName : '' }}"
+                        >
+                            <div class="thumbnail">
+                                <img src="{{ m.pochettePath }}" alt="Pochette de la chanson {{ m.name }}">
+                                <div class="caption">
+                                    <h4>{{ m.name }}</h4>
+                                    <p>{{ m.createur ? m.createur.fullName : '' }}</p>
+                                    <p>on a minute</p>
+                                </div>
+                            </div>
+                            <div class="buttons">
+                                <a href="#" class="btn btn-sm btn-default btn-play">Play</a>
+                                <a href="{{ path("media_edit", {"id": m.id}) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> Editer</a>
+                                <a href="#" class="btn btn-sm btn-danger btn-delete"
+                                   data-delete-path='{{ path('media_delete', {id: m.id}) }}'>
+                                    Supprimer</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {# On appelle le block parent s'il définit des scripts #}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/list-media.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/player.js') }}"></script>
+    <script type="text/javascript">
+        var mesMedia = [
+            {% for m in media %}
+            {'mediaPath': '{{ m.mediaPath }}'},
+            {% endfor %}
+        ];
+    </script>
+{% endblock %}
+

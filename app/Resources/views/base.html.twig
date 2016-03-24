@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css" type="text/css"/>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body>
+{% block header %}{% endblock %}
+<div class="container-fluid">
+    {% block flash %}
+        {% set flash_info = app.session.flashbag.get('info') %}
+        {% set flash_error = app.session.flashbag.get('error') %}
+        <div class="message-flash">
+            {% if flash_info %}
+                <div class="alert alert-info alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {% for msg in flash_info %}
+                        <p> {{ msg }} </p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% if flash_error %}
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {% for msg in flash_error %}
+                        <p> {{ msg }} </p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    {% endblock %}
+    {% block body %}{% endblock %}
+</div>
+<script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.js'></script>
+<script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.js'></script>
+{% block javascripts %}{% endblock %}
+</body>
+</html>

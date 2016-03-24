@@ -1,0 +1,15 @@
+{% extends "EniMediaBundle::layout.html.twig" %}
+
+{% block body %}
+    <h1>Création d'un membre</h1>
+    {% form_theme form 'bootstrap_3_layout.html.twig' %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-primary">Créer</button>
+    {{ form_end(form) }}
+    <ul class="list-unstyled">
+        <li>
+            <a href="{{ path('personne_index') }}"><i class="fa fa-backward"></i> Retour à la liste des utilisateurs</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "EniMediaBundle::layout.html.twig" %}
+
+{% block body %}
+    <h1>Genre creation</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" value="Create"/>
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('genre_index') }}"><i class="fa fa-backward"></i> Retour à la liste</a>
+        </li>
+    </ul>
+{% endblock %}

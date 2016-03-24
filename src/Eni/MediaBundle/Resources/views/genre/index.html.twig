@@ -1,0 +1,23 @@
+{% extends "EniMediaBundle::layout.html.twig" %}
+{% import "EniMediaBundle:macros:buttons.html.twig" as buttons %}
+{% block body %}
+    <ul class="pull-right list-unstyled">
+        <li>
+            <a class="btn btn-primary" href="{{ path('genre_new') }}"><i class="fa fa-plus"></i> Créer un nouveau genre</a>
+        </li>
+    </ul>
+    <h2 class="no-margin">Liste des genres [{{ genres | length }}]</h2>
+    <table class="table table-bordered table-striped">
+        <tbody>
+        {% for genre in genres %}
+            <tr>
+                <td><a href="{{ path('genre_show', { 'id': genre.id }) }}">{{ genre.id }}</a></td>
+                <td>{{ genre.name }}</td>
+                <td>
+                    {{ buttons.edit('genre', genre.id) }}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

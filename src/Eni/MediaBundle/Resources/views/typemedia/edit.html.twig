@@ -1,0 +1,14 @@
+{% extends "EniMediaBundle::layout.html.twig" %}
+{% import "EniMediaBundle:macros:buttons.html.twig" as buttons %}
+{% block body %}
+    <h1>TypeMedia edit</h1>
+    {% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
+    {{ form_start(edit_form) }}
+    {{ form_widget(edit_form) }}
+    <div class="btn-group">
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        {{ buttons.backToList("typemedia", "Retour à la liste des types de médias") }}
+    </div>
+    {{ form_end(edit_form) }}
+    {{ buttons.deleteForm(delete_form) }}
+{% endblock %}

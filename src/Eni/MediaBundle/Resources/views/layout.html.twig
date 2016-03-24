@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+
+{% import _self as menu %}
+
+{% macro li(route, label) %}
+    {% if app.request.get('_route') == route %}
+        <li class="active"><a href="{{ path(route) }}">{{ label }}</a></li>
+    {% else %}
+        <li><a href="{{ path(route) }}">{{ label }}</a></li>
+    {% endif %}
+{% endmacro %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="{{ asset('css/player.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/media-bundle.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block header %}
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path('media_list') }}">Media player</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    {{ menu.li('media_list', 'Media') }}
+                    {{ menu.li('personne_index', 'Membres') }}
+                    {{ menu.li('typemedia_index', 'Type de media') }}
+                    {{ menu.li('genre_index', 'Genres') }}
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ path('media_add') }}"><i class="fa fa-plus"></i> Ajouter un media</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+    </nav>
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

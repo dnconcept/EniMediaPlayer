@@ -1,0 +1,5 @@
+{% extends "EniMediaBundle::layout.html.twig" %}
+{% block body %}
+    {% form_theme media_form 'bootstrap_3_layout.html.twig' %}
+    {{ form(media_form) }}
+{% endblock %}

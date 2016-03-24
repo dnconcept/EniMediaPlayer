@@ -1,0 +1,45 @@
+{% extends "EniMediaBundle::layout.html.twig" %}
+
+{% import "EniMediaBundle:macros:buttons.html.twig" as buttons %}
+
+{% block body %}
+    <h1>Liste des membres [{{ personnes | length }}]</h1>
+
+    <table class="table table-bordered table-striped table-condensed">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Prenom</th>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for personne in personnes %}
+            <tr>
+                <td><a href="{{ path('personne_show', { 'id': personne.id }) }}">{{ personne.id }}</a></td>
+                <td>{{ personne.prenom }}</td>
+                <td>{{ personne.nom }}</td>
+                <td>{{ personne.email }}</td>
+                <td>{{ personne.password }}</td>
+                <td>{{ personne.latitude }}</td>
+                <td>{{ personne.longitude }}</td>
+                <td>
+                    {{ buttons.edit('personne', personne.id) }}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <ul class="list-unstyled">
+        <li>
+            <a class="btn btn-primary" href="{{ path('personne_new') }}"><i class="fa fa-plus"></i> Créer un nouveau membre</a>
+        </li>
+    </ul>
+{% endblock %}
+
+

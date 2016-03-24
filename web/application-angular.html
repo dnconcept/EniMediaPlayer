@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Angular application</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="/EniMediaPlayer/web/css/player.css" rel="stylesheet" type="text/css">
+</head>
+<body ng-app="mediaApp">
+<div ng-controller="HomeCtrl" class="container">
+    <h3>{{ mediaList.length}} Medias disponibles</h3>
+    <div ng-include="'partials/player.html'" onload='afterLoadPartial()'></div>
+    <div class="row">
+        <div class="col-md-3">
+            <input type="text" ng-model="genreFilter.search" class="form-control" placeholder="Genre">
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="g in genreList | filter:genreFilter.search">
+                    <a href="#" ng-click="g.checked = !g.checked">{{g.name}}</a>
+                    <label class="pull-right"><input class="checkbox" type="checkbox" ng-model="g.checked" ></label>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <article ng-repeat="media in mediaList| filter:f.search" class="col-md-4 media-music">
+                    <div class="thumbnail">
+                        <img ng-src="{{media.pochette_path}}"/>
+                        <div class="text-center">
+                            <h4>{{ media.name}}</h4>
+                            <h4>genre = {{ media.genre.name}}</h4>
+                            <p>Par {{ media.createur.nom}} ({{ media.createur.email}})</p>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button class="btn btn-default" ng-click="playOrStopMedia(media)">
+                            <play-pause-button is-active='media == activeMedia'></play-pause-button>
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular.js"></script>
+<script type="text/javascript" src="js/angularApp.js"></script>
+</body>
+</html>
